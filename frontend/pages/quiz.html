@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Quiz</title>
+    <style>
+        /* Base Simple Layout */
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Action Button */
+        #quizBtn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        #quizBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Container for the Quiz blocks */
+        #quizOutput {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* Individual Question Blocks styling */
+        .quiz-block {
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+        }
+
+        .quiz-block h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #111111;
+        }
+
+        /* Styling choices as interactive buttons */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background-color: #ffffff;
+            color: #333333;
+            border: 1px solid #cccccc;
+            padding: 10px 15px;
+            font-size: 1rem;
+            text-align: left;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .option-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Feedback text styling */
+        .feedback {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            padding: 8px;
+            border-radius: 4px;
+            display: none; /* Hidden by default */
+        }
+        
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="quizBtn">Start Quiz</button>
+
+    <div id="quizOutput">
+        </div>
+
+    <script>
+        document.getElementById('quizBtn').addEventListener('click', async () => {
+            const outputDiv = document.getElementById('quizOutput');
+            outputDiv.innerHTML = "Generating your interactive quiz... Please wait.";
+
+            try {
+                const response = await fetch('/generate-quiz', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.error) {
+                    outputDiv.innerHTML = `<p style="color:red;">${data.error}</p>`;
+                } else {
+                    outputDiv.innerHTML = data.quiz;
+                }
+            } catch (err) {
+                outputDiv.innerHTML = '<p style="color:red;">Failed to connect to the backend server.</p>';
+            }
+        });
+
+        // Function called when a user clicks an option button
+        function checkAnswer(button, isCorrect) {
+            // Find the parent quiz block to locate its specific feedback area
+            const quizBlock = button.closest('.quiz-block');
+            const feedbackDiv = quizBlock.querySelector('.feedback');
+            const allButtons = quizBlock.querySelectorAll('.option-btn');
+
+            
+            allButtons.forEach(btn => btn.disabled = true);
+
+            if (isCorrect) {
+                button.style.backgroundColor = "#28a745"; 
+                button.style.color = "#ffffff";
+                feedbackDiv.innerHTML = "&#9989; Correct Answer! Great job!";
+                feedbackDiv.className = "feedback correct";
+            } else {
+                button.style.backgroundColor = "#dc3545"; // Color the clicked button red
+                button.style.color = "#ffffff";
+                feedbackDiv.innerHTML = "&#10060; Wrong Answer. Try reviewing your notes again!";
+                feedbackDiv.className = "feedback wrong";
+            }
+        }
+    </script>
+
+</body>
+</html>

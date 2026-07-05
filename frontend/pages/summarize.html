@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summary</title>
+    <style>
+        /* Base Layout */
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Simple Generate Button */
+        #summarizeBtn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        #summarizeBtn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Summary Output Container Box */
+        #summaryOutput {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            background-color: #fafafa;
+            text-align: left; /* Aligns the text left so it reads beautifully */
+            line-height: 1.6;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Spacing out the AI generated headings */
+        #summaryOutput h3 {
+            color: #111111;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 6px;
+        }
+
+        #summaryOutput h3:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Spacing out the AI generated lists */
+        #summaryOutput ul {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+
+        #summaryOutput li {
+            margin-bottom: 8px;
+        }
+
+        #summaryOutput strong {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="summarizeBtn">
+        Generate Summary
+    </button>
+
+    <div id="summaryOutput">
+        </div>
+
+    <script src="../js/summarize.js"></script>
+
+</body>
+</html>

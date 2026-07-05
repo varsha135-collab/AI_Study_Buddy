@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Notes</title>
+
+    <link rel="stylesheet" href="../css/upload.css">
+
+</head>
+
+<body>
+
+    <h1>Upload Your Study Notes</h1>
+
+    <p>
+        Select a PDF file to begin learning with AI.
+    </p>
+
+    <input
+        type="file"
+        id="pdf-file"
+        accept=".pdf"
+    >
+
+    <br><br>
+
+    <button id="upload-button">
+        Upload PDF
+    </button>
+
+    <div id="upload-status">
+
+    </div>
+    <div id="feature-buttons" style="display:none;">
+
+        <h2>Choose an AI Feature</h2>
+
+        <button onclick="window.location.href='summarize.html'">
+            &#128196;Summarize
+        </button>
+
+        <button onclick="window.location.href='quiz.html'">
+            &#10067;Quiz
+        </button>
+
+        
+
+    </div>
+
+    <script src="../js/upload.js"></script>
+
+</body>
+
+</html>
