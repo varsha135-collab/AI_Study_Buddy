@@ -1,0 +1,23 @@
+{
+  "name": "ai_study_buddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varsha135-collab/AI_Study_Buddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/varsha135-collab/AI_Study_Buddy/issues"
+  },
+  "homepage": "https://github.com/varsha135-collab/AI_Study_Buddy#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
